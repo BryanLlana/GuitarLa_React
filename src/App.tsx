@@ -1,3 +1,4 @@
+import Guitars from "./components/Guitars"
 import Header from "./components/Header"
 
 const App = () => {
@@ -5,6 +6,7 @@ const App = () => {
   return (
     <>
       <Header />
+      <Guitars />
     </>
   )
 }
