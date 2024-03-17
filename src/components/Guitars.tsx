@@ -1,11 +1,20 @@
-import Guitar from "./Guitar"
+import { Guitar } from "../data/interfaces/Guitar"
+import GuitarItem from "./Guitar"
 
-const Guitars = () => {
+interface Props {
+  guitars: Guitar[]
+}
+
+const Guitars: React.FC<Props> = ({ guitars }) => {
   return (
     <main className="container-xl mt-5">
       <h2 className="text-center">Nuestra Colección</h2>
 
-      <Guitar />
+      <div className="row mt-5">
+        { guitars.map(guitar => (
+          <GuitarItem guitar={guitar} />
+        ))}
+      </div>
     </main>
   )
 }
