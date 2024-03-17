@@ -1,4 +1,5 @@
 import { Guitar } from "../data/interfaces/Guitar"
+import { formatPriceToPen } from "../helpers"
 
 interface Props {
   guitar: Guitar
@@ -15,7 +16,7 @@ const GuitarItem: React.FC<Props> = ({ guitar }) => {
       <div className="col-8">
         <h3 className="text-black fs-4 fw-bold text-uppercase">{ name }</h3>
         <p>{ description }</p>
-        <p className="fw-black text-primary fs-3">{ price }</p>
+        <p className="fw-black text-primary fs-3">{ formatPriceToPen(price) }</p>
         <button
           type="button"
           className="btn btn-dark w-100"
