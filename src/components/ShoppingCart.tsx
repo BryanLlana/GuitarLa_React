@@ -19,7 +19,7 @@ const ShoppingCart = () => {
             <tbody>
               <tr>
                 <td>
-                  <img className="img-fluid" src="./public/img/guitarra_02.jpg" alt="imagen guitarra" />
+                  <img className="img-fluid" src="/img/guitarra_02.jpg" alt="imagen guitarra" />
                 </td>
                 <td>SRV</td>
                 <td className="fw-bold">
