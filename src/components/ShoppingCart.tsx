@@ -8,7 +8,7 @@ interface Props {
 }
 
 const ShoppingCart: React.FC<Props> = ({ cart, setCart }) => {
-  const totalCart = useMemo(() => cart.reduce((total, guitarCart) => (guitarCart.quantity * guitarCart.price) + total  , 0), [cart])
+  const totalCart = useMemo(() => cart.reduce((total, guitarCart) => (guitarCart.quantity * guitarCart.price) + total, 0), [cart])
   const MAX_ITEM = 5
   const MIN_ITEM = 1
 
@@ -43,6 +43,10 @@ const ShoppingCart: React.FC<Props> = ({ cart, setCart }) => {
     setCart(cartUpdate)
   }
 
+  const emptyCart = () => {
+    setCart([])
+  }
+
   return (
     <nav className="col-md-6 a mt-5 d-flex align-items-start justify-content-end">
       <div className="carrito">
@@ -50,7 +54,7 @@ const ShoppingCart: React.FC<Props> = ({ cart, setCart }) => {
 
         <div id="carrito" className="bg-white p-3">
           {cart.length === 0 ?
-              <p className="text-center">El carrito esta vacio</p>
+            <p className="text-center">El carrito esta vacio</p>
             : (
               <>
                 <table className="w-100 table">
@@ -103,11 +107,10 @@ const ShoppingCart: React.FC<Props> = ({ cart, setCart }) => {
                     ))}
                   </tbody>
                 </table>
-                <p className="text-end">Total pagar: <span className="fw-bold">{ formatPriceToPen(totalCart) }</span></p>
-                <button className="btn btn-dark w-100 mt-3 p-2">Vaciar Carrito</button>
               </>
             )}
-
+          <p className="text-end">Total pagar: <span className="fw-bold">{formatPriceToPen(totalCart)}</span></p>
+          <button className="btn btn-dark w-100 mt-3 p-2" onClick={emptyCart}>Vaciar Carrito</button>
         </div>
       </div>
     </nav>
