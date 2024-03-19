@@ -10,7 +10,7 @@ const App = () => {
 
   return (
     <>
-      <Header />
+      <Header cart={cart} />
       <Guitars guitars={guitars} cart={cart} setCart={setCart} />
       <Footer />
     </>

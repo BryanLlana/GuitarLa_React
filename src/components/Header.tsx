@@ -1,6 +1,11 @@
+import { CartGuitar } from "../data/interfaces/CartGuitar"
 import ShoppingCart from "./ShoppingCart"
 
-const Header = () => {
+interface Props {
+  cart: CartGuitar[]
+}
+
+const Header: React.FC<Props> = ({ cart }) => {
   return (
     <header className="py-5 header">
       <div className="container-xl">
@@ -10,7 +15,7 @@ const Header = () => {
               <img className="img-fluid" src="/img/logo.svg" alt="imagen logo" />
             </a>
           </div>
-          <ShoppingCart />
+          <ShoppingCart cart={cart} />
         </div>
       </div>
     </header>

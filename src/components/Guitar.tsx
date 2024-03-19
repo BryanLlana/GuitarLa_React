@@ -10,15 +10,18 @@ interface Props {
 
 const GuitarItem: React.FC<Props> = ({ guitar, cart, setCart }) => {
   const { id, name, description, image, price } = guitar
+  const MAX_ITEM = 5
 
   const handleClick = () => {
-    const guitarExists = cart.some(guitarCart => guitarCart.id === guitar.id)
+    const guitarExists = cart.find(guitarCart => guitarCart.id === guitar.id)
     if (guitarExists) {
-      const cartUpdate = cart.map(guitarCart => guitarCart.id === guitar.id ? ({
-        ...guitarCart,
-        quantity: ++guitarCart.quantity
-      }) : guitarCart)
-      setCart(cartUpdate)
+      if (guitarExists.quantity < MAX_ITEM) {
+        const cartUpdate = cart.map(guitarCart => guitarCart.id === guitar.id ? ({
+          ...guitarCart,
+          quantity: ++guitarCart.quantity
+        }) : guitarCart)
+        setCart(cartUpdate)
+      }
     } else {
       setCart([...cart, { ...guitar, quantity: 1 }])
     }
