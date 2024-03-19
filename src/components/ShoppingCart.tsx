@@ -38,6 +38,11 @@ const ShoppingCart: React.FC<Props> = ({ cart, setCart }) => {
     setCart(cartUpdate)
   }
 
+  const deleteGuitarCart = (id: number) => {
+    const cartUpdate = cart.filter(guitarCart => guitarCart.id !== id)
+    setCart(cartUpdate)
+  }
+
   return (
     <nav className="col-md-6 a mt-5 d-flex align-items-start justify-content-end">
       <div className="carrito">
@@ -89,6 +94,7 @@ const ShoppingCart: React.FC<Props> = ({ cart, setCart }) => {
                           <button
                             className="btn btn-danger"
                             type="button"
+                            onClick={() => deleteGuitarCart(guitarCart.id)}
                           >
                             X
                           </button>
