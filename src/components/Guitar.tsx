@@ -9,7 +9,7 @@ interface Props {
 }
 
 const GuitarItem: React.FC<Props> = ({ guitar, cart, setCart }) => {
-  const { id, name, description, image, price } = guitar
+  const { name, description, image, price } = guitar
   const MAX_ITEM = 5
 
   const handleClick = () => {
