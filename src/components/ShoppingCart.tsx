@@ -3,11 +3,40 @@ import { CartGuitar } from "../data/interfaces/CartGuitar"
 import { formatPriceToPen } from "../helpers"
 
 interface Props {
-  cart: CartGuitar[]
+  cart: CartGuitar[],
+  setCart: (cart: CartGuitar[]) => void
 }
 
-const ShoppingCart: React.FC<Props> = ({ cart }) => {
+const ShoppingCart: React.FC<Props> = ({ cart, setCart }) => {
   const totalCart = useMemo(() => cart.reduce((total, guitarCart) => (guitarCart.quantity * guitarCart.price) + total  , 0), [cart])
+  const MAX_ITEM = 5
+  const MIN_ITEM = 1
+
+  const decrementQuantity = (id: number) => {
+    const cartUpdate = cart.map(guitarCart => {
+      if (guitarCart.id === id) {
+        if (guitarCart.quantity > MIN_ITEM) {
+          guitarCart.quantity = --guitarCart.quantity
+          return guitarCart
+        }
+      }
+      return guitarCart
+    })
+    setCart(cartUpdate)
+  }
+
+  const incrementQuantity = (id: number) => {
+    const cartUpdate = cart.map(guitarCart => {
+      if (guitarCart.id === id) {
+        if (guitarCart.quantity < MAX_ITEM) {
+          guitarCart.quantity = ++guitarCart.quantity
+          return guitarCart
+        }
+      }
+      return guitarCart
+    })
+    setCart(cartUpdate)
+  }
 
   return (
     <nav className="col-md-6 a mt-5 d-flex align-items-start justify-content-end">
@@ -43,6 +72,7 @@ const ShoppingCart: React.FC<Props> = ({ cart }) => {
                           <button
                             type="button"
                             className="btn btn-dark"
+                            onClick={() => decrementQuantity(guitarCart.id)}
                           >
                             -
                           </button>
@@ -50,6 +80,7 @@ const ShoppingCart: React.FC<Props> = ({ cart }) => {
                           <button
                             type="button"
                             className="btn btn-dark"
+                            onClick={() => incrementQuantity(guitarCart.id)}
                           >
                             +
                           </button>

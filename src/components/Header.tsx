@@ -2,10 +2,11 @@ import { CartGuitar } from "../data/interfaces/CartGuitar"
 import ShoppingCart from "./ShoppingCart"
 
 interface Props {
-  cart: CartGuitar[]
+  cart: CartGuitar[],
+  setCart: (cart: CartGuitar[]) => void
 }
 
-const Header: React.FC<Props> = ({ cart }) => {
+const Header: React.FC<Props> = ({ cart, setCart }) => {
   return (
     <header className="py-5 header">
       <div className="container-xl">
@@ -15,7 +16,7 @@ const Header: React.FC<Props> = ({ cart }) => {
               <img className="img-fluid" src="/img/logo.svg" alt="imagen logo" />
             </a>
           </div>
-          <ShoppingCart cart={cart} />
+          <ShoppingCart cart={cart} setCart={setCart} />
         </div>
       </div>
     </header>
